@@ -11,17 +11,24 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
-    public GameObject GameOverText;
+    public Text LastScoreText;
+    public Text NameText;
+    public GameObject GameOverScreen;
     
     private bool m_Started = false;
     private int m_Points;
     
     private bool m_GameOver = false;
 
-    
+
+   
+
     // Start is called before the first frame update
     void Start()
     {
+        LastScoreText = GameObject.Find("Canvas2").GetComponentInChildren<Text>();
+
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -57,6 +64,7 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                LastScoreText.text = "Best Score: " + NameText.text + " " + m_Points;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
@@ -70,7 +78,8 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        
         m_GameOver = true;
-        GameOverText.SetActive(true);
+        GameOverScreen.SetActive(true);
     }
 }
