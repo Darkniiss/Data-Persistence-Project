@@ -28,6 +28,7 @@ public class MainManager : MonoBehaviour
     {
         LastScoreText = GameObject.Find("Canvas2").GetComponentInChildren<Text>();
 
+        LastScoreText.text = LastScore.Instance.lastScoreString;
 
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -64,7 +65,6 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                LastScoreText.text = "Best Score: " + NameText.text + " " + m_Points;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
@@ -78,8 +78,12 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
-        
         m_GameOver = true;
         GameOverScreen.SetActive(true);
+    }
+
+    public void ScoreSetting()
+    {
+        LastScore.Instance.lastScoreString = "Last Score: " + NameText.text + " " + m_Points;
     }
 }

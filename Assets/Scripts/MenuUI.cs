@@ -26,6 +26,7 @@ public class MenuUI : MonoBehaviour
 
     public void Exit()
     {
+        LastScore.Instance.SaveScore();
 
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
@@ -33,4 +34,6 @@ public class MenuUI : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    
 }
